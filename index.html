@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chess card</title>
+    <style>
+
+        body{
+            margin: 0;
+        }
+        .header{
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            background: FloralWhite;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+        }
+        .root{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .layout{
+            width: 1024px;
+            box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+            padding: 0 20px 20px;
+            box-sizing: border-box;
+        }
+        .row{
+            display: flex;
+        }
+        .center{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .block {
+            padding: 10px;
+        }
+        .block p{
+            font-size: 19px;
+         }
+        .link{
+            display: inline-block;
+            padding: 10px;
+            color: #fff;
+            background: #4682b4;
+            border-radius: 4px;
+            font-size: 18px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .text{
+            font-size: 18px;
+            font-style: Italic;
+        }
+
+        @media (max-width: 1024px){
+            img{
+                width: 100%;
+            }
+            .row{
+                flex-direction: column;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                border-top: 2px solid #ebebeb;
+            }
+            .link{
+                padding: 30px;
+                border-radius: 4px;
+                font-size: 35px;
+                cursor: pointer;
+                font-weight: bold;
+            }
+            .text{
+                font-size: 25px;
+            }
+
+            .block p,
+            .block li{
+                font-size: 13px!important;
+            }
+        }
+    </style>
+</head>
+<body>
+<script>
+    var id = Math.round(Math.random()*Math.pow(10,9));
+    var link = 'https://chess-card.herokuapp.com?id=' + id;
+
+    function gameRedirect() {
+        window.open(link,'_blank');
+    }
+
+</script>
+<div class="root">
+    <div class="layout">
+        <div  class="header">
+            <div class="link" onclick="gameRedirect()">Играть</div> <span class="text">Чтобы пригласить друга в игру, перешлите ему ссылку.</span>
+        </div>
+        <div>
+            <div class="center">
+                <img src="map.png" />
+            </div>
+            <h1>Игра соединяющая тактику <span>шахмат</span> и неопределенность <span>карт</span></h1>
+            <div class="row">
+                <div>
+                    <img src="footman-move.png" />
+                </div>
+                <div class="block">
+                    <p>
+                        Игра происходит на поле 8 на 8, каждая клетка является сотой (шестиугольником) из которой можно ходить в 6
+                        направлений:
+                    <ul>
+                        <li>вперед</li>
+                        <li>вперед направо</li>
+                        <li>вперед налево</li>
+                        <li>назад</li>
+                        <li>назад налево</li>
+                        <li>назад направо</li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="block">
+                    <p>Каждому игроку доступно 6 отрядов пехоты по 16 солдат в каждом и 1 боевой маг.</p>
+                    <p>Цель игры - уничтожить оба вражеских лагеря, или всё вражеское войско.</p>
+                    <p>Игра пошаговая, по очереди игроки могут сделать по 1 ходу.</p>
+                     <p>Ходом может быть перемещение 1 отряда, или атака вражеского отряда пехотой, или использование карты магом.</p>
+                </div>
+                <div>
+                    <img src="troops.png" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div>
+                    <img src="troop-attack.png" />
+                </div>
+                <div class="block">
+                    <p>Пехота может ходить на любую из соседних свободных позиций или атаковать врага в соседней позиции.</p>
+                    <p>Каждый воин пехоты наносит 1 удар, каждый из которых может с вероятностью 33% поразить 1 пехотинца.</p>
+                    <p>Если противником является лагерь или вражеский маг, каждый из воинов гарантированно нанесет 1 единицу урона.</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="block">
+
+                    <p>Маг может ходить на 2 клетки в любом направлении, игнорируя препятствия.</p>
+                    <p>За 1 ход маг либо перемещается, либо использует 1 карту.</p>
+                    <p>Изначально маг имеет 3 случайные карты из колоды, если за ход была потрачена карта, новая будет вытянута из колоды случайным образом.</p>
+                    <p>В колоде 36 карт - по 9 каждой из 4 мастей.</p>
+
+                </div>
+                <div>
+                    <img src="mage-move.png" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div>
+                    <img src="ice.png" />
+                </div>
+                <div class="block">
+
+                    <p>Масть льда - повышает защиту отряда или лагеря на число от 1 до 9, конретное число указано на карте.</p>
+                    <p>Защита полглощает указанную величину урона в следующем ходу.</p>
+                    <p>Каждый ход защита будет ослабевать на 1 единицу.</p>
+                    <p>Карты льда не суммируются, при применении на цель с защитой, предыдущее заклинание рассеится.</p>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="block">
+
+                    <p>Масть света - поскрещает от 1 до 9 воинов в отряде или 1 до 9 здоровья магу.</p>
+                    <p>Восстановить лагерь нельзя, увеличить максимальную численность отряда или максимальное здоровье мага - нельзя.</p>
+
+                </div>
+                <div>
+                    <img src="holy.png" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div>
+                    <img src="fire.png" />
+                </div>
+                <div class="block">
+                    <p>
+                        Масть огня - наносит от 1 до 9 урона отряду, магу или лагерю. Огонь игнорирует ледяную броню и наносит 100% урон.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="block">
+
+                    <p>Масть смерти - проклинает отряд или мага на 1 - 9 ходов.</p>
+                    <p>Каждый ход будет погибать 2 воина из отряда или здоровье мага будет уменьшаться на 2.</p>
+                    <p>Проклясть лагерь нельзя.</p>
+                    <p>Смерть игнорирует ледяную броню и наносит 100% урон.</p>
+                    <p>Карты смерти не суммируются.</p>
+                    <p>При применении на проклятую цель, старое проклятие рассеивается.</p>
+
+                </div>
+                <div>
+                    <img src="death.png" />
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
