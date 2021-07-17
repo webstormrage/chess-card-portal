@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="favicon.ico" />
     <title>Medieval battles</title>
     <style>
 
@@ -90,7 +90,7 @@
 <body>
 <script>
     var id = Math.round(Math.random()*Math.pow(10,9));
-    var link = 'https://chess-card.herokuapp.com?id=' + id;
+    var link = 'https://medieval-battles.herokuapp.com/?id=' + id;
 
     function gameRedirect() {
         window.open(link,'_blank');
@@ -138,7 +138,7 @@
                     <p>Игроки делают ходы параллельно, за 1 ход можно сделать 1 действие каждым отрядом.</p>
                     <p>После того, как игроки сходят запускается симуляция боя.</p>
                 </div>
-                <div style="position: relative;">
+                <div>
                     <img src="troops.png" />
                 </div>
             </div>
